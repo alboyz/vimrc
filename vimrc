@@ -40,6 +40,9 @@ call vundle#begin()
   Plugin 'townk/vim-autoclose'		
 	Plugin 'morhetz/gruvbox'
 	Plugin 'jiangmiao/auto-pairs'
+	Plugin 'vim-syntastic/syntastic'
+  Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plugin 'junegunn/fzf.vim'
 
 	"deoplete
 	if has('nvim')
@@ -100,4 +103,19 @@ set foldmethod=syntax "syntax highlighting items specify folds
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 let javaScript_fold=1 "activate folding by JS syntax
 set foldlevelstart=88 "start file with all folds opened 
-						
+
+
+"--SYNTASTIC--
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+"--SYNTASTIC_CHECK
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
